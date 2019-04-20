@@ -5,7 +5,8 @@ import {
   FETCHING_SMURFS,
   SMURFS_FETCH_SUCCESS,
   SMURFS_FETCH_FAILURE,
-  SMURF_ADDED
+  SMURF_ADDED,
+  SMURF_DELETED
 } from "../actions";
 
 const initialState = {
@@ -46,7 +47,13 @@ const smurfReducer = (state = initialState, action) => {
 
     case SMURF_ADDED:
       return { ...state, smurfs: [...action.payload] };
-
+    case SMURF_DELETED: {
+      return {
+        ...state,
+        smurfs: [...action.payload],
+        deletingSmurf: true
+      };
+    }
     default:
       return state;
   }
